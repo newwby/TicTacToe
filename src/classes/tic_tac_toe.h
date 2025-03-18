@@ -4,12 +4,14 @@
 #include "player.h"
 
 class TicTacToe {
-    public:
-        TicTacToe();
-        ~TicTacToe();
-        void displayBoard();
-        bool makeMove(int row, int col, Player player);
-        bool checkWin(Player player);
+public:
+    char** board;
+
+    TicTacToe();
+    ~TicTacToe();
+    void displayBoard();
+    bool makeMove(int row, int col, Player player);
+    bool checkWin(Player player);
 };
 
 #endif

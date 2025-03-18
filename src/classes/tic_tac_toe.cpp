@@ -1,40 +1,31 @@
 #include <iostream>
-using namespace std;
-
+#include "tic_tac_toe.h"
 #include "player.h"
 
-class TicTacToe {
-private:
-    char** board;
-
-public:
-    // Constructor
-    TicTacToe() {
-        board = new char*[3];
-        for (int i = 0; i < 3; ++i) {
-            board[i] = new char[3]{ ' ', ' ', ' ' };
-        }
+TicTacToe::TicTacToe() {
+    board = new char* [3];
+    for (int i = 0; i < 3; ++i) {
+        board[i] = new char[3] { ' ', ' ', ' ' };
     }
+}
 
-    // Destructor
-    ~TicTacToe() {
-        for (int i = 0; i < 3; ++i) {
-            delete[] board[i];
-        }
-        delete[] board;
+TicTacToe::~TicTacToe() {
+    for (int i = 0; i < 3; ++i) {
+        delete[] board[i];
     }
+    delete[] board;
+}
 
-    void displayBoard() {
-        std::cout << "displayBoard // Hello World!" << std::endl;
-    }
+void TicTacToe::displayBoard() {
+    std::cout << "Displaying the board...\n";
+}
 
-    bool makeMove(int row, int col, Player player) {
-        std::cout << "makeMove!" << std::endl;
-        return true;
-    }
+bool TicTacToe::makeMove(int row, int col, Player player) {
+    std::cout << "Making a move at (" << row << ", " << col << ") for player " << (player == Player::X ? "X" : "O") << "\n";
+    return true;
+}
 
-    bool checkWin(Player player) {
-        std::cout << "checkWin!" << std::endl;
-        return true;
-    };
-};
+bool TicTacToe::checkWin(Player player) {
+    std::cout << "Checking for a win...\n";
+    return false;
+}
