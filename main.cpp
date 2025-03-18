@@ -1,6 +1,4 @@
-﻿// CPP Demo Project.cpp : Defines the entry point for the application.
-//
-
+﻿
 #include "main.h"
 #include "src/classes/player.h"
 #include "src/classes/tic_tac_toe.h"
@@ -15,9 +13,11 @@ int main()
 
     int row = 0;
     int col = 0;
-    cout << "---\nHello world!\n---";
+    cout << "---\nHello world!\n---\n";
 
     // Demo calls
     game.displayBoard();
     game.makeMove(row, col, currentPlayer);
+    game.checkWin(currentPlayer);
+
 }
