@@ -3,6 +3,8 @@
 #include "src/classes/player.h"
 #include "src/classes/tic_tac_toe.h"
 
+#include <windows.h>
+
 using namespace std;
 
 int main()
@@ -11,8 +13,12 @@ int main()
     TicTacToe game;
     Player currentPlayer = Player::X;
 
+    const int MAX_MOVES = 9;
+
     int row = 0;
     int col = 0;
+
+    int total_moves = 0;
     
     bool game_active = true;
     bool input_valid = false;
@@ -22,29 +28,50 @@ int main()
         col = 0;
 
         while (!input_valid) {
+            // reset board
             // cmd only
             system("cls");
+            row = 0;
+            col = 0;
+
+            // draw the board
             game.displayBoard();
-            cout << "Player " << ((currentPlayer == Player::X) ? 'X' : 'O') << ", enter row (between 1 & 3): ";
-            cin >> row;
-            cout << "Player " << ((currentPlayer == Player::X) ? 'X' : 'O') << ", enter column (between 1 & 3): ";
-            cin >> col;
-            try {
-                if ((row >= 1) && (row <= 3) && (col >= 1) && (col <= 3)) {
-                    game.makeMove(row, col, currentPlayer);
-                    cout << "\nMade move!\n";
-                    input_valid = true;
-                }
-                else {
-                    //TODO add row/col to error
-                    string error_message = "Invalid input!";
-                    throw(error_message);
-                }
+
+            // handle ties
+            if (total_moves == MAX_MOVES) {
+                cout << "It's a draw!";
             }
-            catch (string error_string) {
-                cout << error_string;
-                input_valid = true;
+            else {
+                // Handle input for making a move
+                cout << "Player " << ((currentPlayer == Player::X) ? 'X' : 'O') << ", enter row (between 1 & 3): ";
+                cin >> row;
+                cout << "Player " << ((currentPlayer == Player::X) ? 'X' : 'O') << ", enter column (between 1 & 3): ";
+                cin >> col;
+
+                // Validate input, make move if successful else go back to the start of the loop
+                try {
+                    if ((row >= 1) && (row <= 3) && (col >= 1) && (col <= 3)) {
+                        game.makeMove(row, col, currentPlayer);
+                        cout << "\nMade move!\n";
+                        input_valid = true;
+                    }
+                    else {
+                        //TODO add row/col to error
+                        string error_message = "Invalid input!";
+                        throw(error_message);
+                    }
+                }
+                catch (string error_string) {
+                    cout << error_string;
+                    // Clear the invalid input
+                    cin.clear();
+                    cin.ignore(10000, '\n');
+                    Sleep(1000);   
+                }
+
             }
+
+
         };
         
 
