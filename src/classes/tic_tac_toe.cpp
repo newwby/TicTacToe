@@ -17,7 +17,18 @@ TicTacToe::~TicTacToe() {
 }
 
 void TicTacToe::displayBoard() {
-    std::cout << "Displaying the board...\n";
+    std::cout << "\n";
+    for (int i = 0; i < 3; ++i) {
+        for (int j = 0; j < 3; ++j) {
+            std::cout << board[i][j];
+            // column separators after character unless last
+            if (j < 2) std::cout << " | ";
+        }
+        std::cout << "\n";
+        // row separator after all column characters, unless last row
+        if (i < 2) std::cout << "- - - - -\n";
+    }
+    std::cout << "\n";
 }
 
 bool TicTacToe::makeMove(int row, int col, Player player) {
