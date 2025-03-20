@@ -28,6 +28,7 @@ int main()
         col = 0;
 
         while (!input_valid) {
+            
             // reset board
             // cmd only
             system("cls");
@@ -40,6 +41,7 @@ int main()
             // handle ties
             if (total_moves == MAX_MOVES) {
                 cout << "It's a draw!";
+                break;
             }
             else {
                 // Handle input for making a move
@@ -51,9 +53,24 @@ int main()
                 // Validate input, make move if successful else go back to the start of the loop
                 try {
                     if ((row >= 1) && (row <= 3) && (col >= 1) && (col <= 3)) {
-                        game.makeMove(row, col, currentPlayer);
-                        cout << "\nMade move!\n";
-                        input_valid = true;
+
+                        // Handle player making a move/if they've won or made an invalid move
+                        if (game.makeMove(row, col, currentPlayer)) {
+                            total_moves++;
+                            if (game.checkWin(currentPlayer)) {
+                                // cmd only
+                                system("cls");
+                                game.displayBoard();
+                                cout << "Player " << ((currentPlayer == Player::X) ? 'X' : 'O') << " wins!\n";
+                                break;
+                            }
+                        // Switch player after making move (if valid and doesn't cause victory)
+                        currentPlayer = (currentPlayer == Player::X) ? Player::O : Player::X;
+                        }
+                        else {
+                            cout << "Invalid move. Try again.\n";
+                        }
+
                     }
                     else {
                         //TODO add row/col to error
