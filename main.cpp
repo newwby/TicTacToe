@@ -19,7 +19,7 @@ int main()
     int col = 0;
 
     int total_moves = 0;
-    
+
     bool game_active = true;
     bool input_valid = false;
 
@@ -28,7 +28,7 @@ int main()
         col = 0;
 
         while (!input_valid) {
-            
+
             // reset board
             // cmd only, no handling for linux
             system("cls");
@@ -55,7 +55,8 @@ int main()
                     if ((row >= 1) && (row <= 3) && (col >= 1) && (col <= 3)) {
 
                         // Handle player making a move/if they've won or made an invalid move
-                        if (game.makeMove(row, col, currentPlayer)) {
+                        // Need to convert from human readable (1-3) to array index (0-2)
+                        if (game.makeMove(row - 1, col - 1, currentPlayer)) {
                             total_moves++;
                             if (game.checkWin(currentPlayer)) {
                                 // cmd only
@@ -64,8 +65,8 @@ int main()
                                 cout << "Player " << ((currentPlayer == Player::X) ? 'X' : 'O') << " wins!\n";
                                 break;
                             }
-                        // Switch player after making move (if valid and doesn't cause victory)
-                        currentPlayer = (currentPlayer == Player::X) ? Player::O : Player::X;
+                            // Switch player after making move (if valid and doesn't cause victory)
+                            currentPlayer = (currentPlayer == Player::X) ? Player::O : Player::X;
                         }
                         else {
                             cout << "Invalid move. Try again.\n";
@@ -83,17 +84,18 @@ int main()
                     // Clear the invalid input
                     cin.clear();
                     cin.ignore(10000, '\n');
-                    Sleep(1000);   
+                    Sleep(1000);
                 }
 
             }
 
 
         };
-        
+
 
 
 
 
     };
 
+}
