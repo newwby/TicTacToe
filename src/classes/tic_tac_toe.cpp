@@ -38,9 +38,16 @@ void TicTacToe::displayBoard() {
     std::cout << "\n";
 }
 
+// does not validate move this happens in main loop
 bool TicTacToe::makeMove(int row, int col, Player player) {
-    std::cout << "Making a move at (" << row << ", " << col << ") for player " << (player == Player::X ? "X" : "O") << "\n";
-    return true;
+    if (board[row][col] == ' ') {
+        // symbol determined by player enum
+        board[row][col] = (player == Player::X) ? 'X' : 'O';
+        // move is made
+        return true;
+    }
+    // spot already taken
+    return false;
 }
 
 bool TicTacToe::checkWin(Player player) {
