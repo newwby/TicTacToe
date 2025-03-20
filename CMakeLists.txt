@@ -17,6 +17,8 @@ add_executable (CMakeTarget
 	"src/classes/tic_tac_toe.cpp"
 )
 
+set_target_properties(CMakeTarget PROPERTIES OUTPUT_NAME "TicTacToe")
+
 if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET CMakeTarget PROPERTY CXX_STANDARD 20)
 endif()

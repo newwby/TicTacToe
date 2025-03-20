@@ -22,6 +22,7 @@ int main()
 
     bool game_active = true;
     bool input_valid = false;
+    bool game_over = false;
 
     while (game_active) {
         row = 0;
@@ -42,6 +43,7 @@ int main()
             if (total_moves == MAX_MOVES) {
                 cout << "It's a draw!\n";
                 game_active = false;
+                game_over = true;
                 break;
             }
             else {
@@ -65,6 +67,7 @@ int main()
                                 game.displayBoard();
                                 cout << "Player " << ((currentPlayer == Player::X) ? 'X' : 'O') << " wins!\n";
                                 game_active = false;
+                                game_over = true;
                                 break;
                             }
                             // Switch player after making move (if valid and doesn't cause victory)
@@ -99,5 +102,8 @@ int main()
 
 
     };
-
+    // for builds need to be able to read the exit message
+    if (game_over == true) {
+        Sleep(5000);
+    }
 }
