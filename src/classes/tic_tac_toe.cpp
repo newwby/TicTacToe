@@ -18,15 +18,22 @@ TicTacToe::~TicTacToe() {
 
 void TicTacToe::displayBoard() {
     std::cout << "\n";
+    // draw column indicators
+    std::cout << "     1   2   3 \n\n";
+    // draw column
     for (int i = 0; i < 3; ++i) {
+        // offset row from edge and draw row indicators
+        std::cout << " " << i+1 << "   ";
+        // draw row
         for (int j = 0; j < 3; ++j) {
             std::cout << board[i][j];
             // column separators after character unless last
             if (j < 2) std::cout << " | ";
         }
+        // only new line after row is complete
         std::cout << "\n";
         // row separator after all column characters, unless last row
-        if (i < 2) std::cout << "- - - - -\n";
+        if (i < 2) std::cout << "     - - - - -\n";
     }
     std::cout << "\n";
 }
