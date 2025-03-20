@@ -64,6 +64,7 @@ int main()
                                 system("cls");
                                 game.displayBoard();
                                 cout << "Player " << ((currentPlayer == Player::X) ? 'X' : 'O') << " wins!\n";
+                                game_active = false;
                                 break;
                             }
                             // Switch player after making move (if valid and doesn't cause victory)
