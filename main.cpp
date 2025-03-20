@@ -2,7 +2,7 @@
 #include "main.h"
 #include "src/classes/player.h"
 #include "src/classes/tic_tac_toe.h"
-
+// for sleep
 #include <windows.h>
 
 using namespace std;
@@ -30,7 +30,7 @@ int main()
         while (!input_valid) {
             
             // reset board
-            // cmd only
+            // cmd only, no handling for linux
             system("cls");
             row = 0;
             col = 0;
@@ -97,9 +97,3 @@ int main()
 
     };
 
-    // Demo calls
-    //game.displayBoard();
-    //game.makeMove(row, col, currentPlayer);
-    //game.checkWin(currentPlayer);
-
-}
