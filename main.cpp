@@ -40,7 +40,8 @@ int main()
 
             // handle ties
             if (total_moves == MAX_MOVES) {
-                cout << "It's a draw!";
+                cout << "It's a draw!\n";
+                game_active = false;
                 break;
             }
             else {
